@@ -1,51 +1,31 @@
-import React from 'react';
-import "./Task.css"
+import React, {Component} from 'react';
+import "./Task.css";
 
 
-const Task = (props: any) => {
-    return (
-        <div>
-            <li className='completed'>
-                <div className="view">
-                    <input type="checkbox" className="toggle"/>
-                    <label>
-                    <span className="description">
-                        Completed task
-                    </span>
-                        <span className="created">
-                        created 17 seconds ago
-                    </span>
-                    </label>
-                    <button className="icon icon-edit"></button>
-                    <button className="icon icon-destroy"></button>
-                </div>
-            </li>
-            <li className="editing">
-                <div className="view">
-                    <input className="toggle" type="checkbox"/>
-                    <label>
-                        <span className="description">Editing task</span>
-                        <span className="created">created 5 minutes ago</span>
-                    </label>
-                    <button className="icon icon-edit"></button>
-                    <button className="icon icon-destroy"></button>
-                </div>
-                <input type="text" className="edit" value="Editing task"/>
-            </li>
-            <li>
-                <div className="view">
-                    <input className="toggle" type="checkbox"/>
-                    <label>
-                        <span className="description">Active task</span>
-                        <span className="created">created 5 minutes ago</span>
-                    </label>
-                    <button className="icon icon-edit"></button>
-                    <button className="icon icon-destroy"></button>
-                </div>
-            </li>
-        </div>
+export default class Task extends Component {
+    static defaultProps: any;
+    onLabelClick = () => console.log(`works`);
+    onInputClick = () =>{}
 
-    )
-
+    render(): any {
+        let a = JSON.parse(JSON.stringify(this.props))
+        return a.todoData.map((element: any) => {
+            const {id, liClass, label, createTime,} = element;
+            return (
+                <li key={id} className={liClass}>
+                    <div className="view">
+                        <input className="toggle" type="checkbox" onClick={this.onInputClick}/>
+                        <label htmlFor={id} onClick={this.onLabelClick}>
+                            <span className="description">{label}</span>
+                            <span className="created">{createTime}</span>
+                        </label>
+                        <button className="icon icon-edit"></button>
+                        <button className="icon icon-destroy"></button>
+                    </div>
+                    <input type="text" className="edit" defaultValue="Editing task"/>
+                </li>
+            )
+        })
+    }
 }
-export default Task;
+
