@@ -1,17 +1,20 @@
 import React from "react";
 import Task from "../Task";
 import "./TaskList.css";
-import type {stateData} from "../App/App";
 
 
-const TaskList = (props : stateData ) => {
+const TaskList : React.FunctionComponent<{todoData : any, deleteItem : Function, onToggleDone : Function, editItem : Function}> = ({todoData, deleteItem, onToggleDone, editItem}) : any => {
+    const tasks = todoData.map((element: object) => {
+        const {id, ...items} : any = element
+        return (<Task {...items}
+                     id={id}
+                     key={id}
+                     deleteItem = {() => deleteItem(id)}
+                     onToggleDone = {() => onToggleDone(id)}
+                     editItem = {editItem}/>)
+    })
     return (
-        <ul className="todo-list">
-            <Task todoData={props.todoData}
-                  isCompleted={props.isCompleted}
-                  isEditing={props.isEditing}
-                  classNames={props.classNames} ></Task>
-        </ul>
+        <ul className="todo-list">{tasks}</ul>
     )
 }
 
