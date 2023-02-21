@@ -18,8 +18,7 @@
     ],
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true,
-            "tsx" : true
+            "jsx": true
         },
         "project": "./tsconfig.json",
         "ecmaVersion": "latest",
