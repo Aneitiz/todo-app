@@ -51,6 +51,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",
@@ -68,17 +69,5 @@
       "npm run lint:fix",
       "git add"
     ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Aneitiz/todo-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Aneitiz/todo-app/issues"
-  },
-  "homepage": "https://github.com/Aneitiz/todo-app#readme"
+  }
 }
