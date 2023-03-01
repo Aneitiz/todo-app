@@ -7,8 +7,8 @@ const TaskList: React.FunctionComponent<{
   todoData: any
   deleteItem: Function
   onToggleDone: Function
-  editItem: Function
-}> = ({ todoData, deleteItem, onToggleDone, editItem }): any => {
+  editItemHandler: Function
+}> = ({ todoData, deleteItem, onToggleDone, editItemHandler }): any => {
   const tasks = todoData.map((element: object) => {
     const { id, ...items }: any = element
     return (
@@ -18,7 +18,7 @@ const TaskList: React.FunctionComponent<{
         key={id}
         deleteItem={() => deleteItem(id)}
         onToggleDone={() => onToggleDone(id)}
-        editItem={editItem}
+        editItemHandler={editItemHandler}
       />
     )
   })
