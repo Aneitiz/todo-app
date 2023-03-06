@@ -1,5 +1,4 @@
-VERSEL : https://build-8yt76zthp-aneitiz.vercel.app/
-
+VERSEL : https://todo-app-completed-refactor.vercel.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
