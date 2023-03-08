@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 export default class Task extends Component<
   {
-    id: number | string
+    id: any
     createTime: string
     label: string
     deleteItem: React.MouseEventHandler<HTMLButtonElement>
@@ -16,11 +16,13 @@ export default class Task extends Component<
   },
   {
     editing: boolean
+    done: boolean
     inputValue: string
   }
 > {
   state = {
     editing: false,
+    done: false,
     inputValue: '',
   }
 
@@ -49,7 +51,7 @@ export default class Task extends Component<
   }
 
   render(): React.ReactElement {
-    let { label, createTime, done, onToggleDone, deleteItem } = this.props
+    let { label, createTime, done, onToggleDone, deleteItem, id } = this.props
     let taskClass = classNames({
       completed: done,
       editing: this.state.editing,
@@ -57,8 +59,8 @@ export default class Task extends Component<
     return (
       <li className={taskClass}>
         <div className="view">
-          <input className="toggle" type="checkbox" onClick={onToggleDone} defaultChecked={done} />
-          <label>
+          <input id={id} className="toggle" type="checkbox" onClick={onToggleDone} defaultChecked={done} />
+          <label htmlFor={id}>
             <span className="description">{label}</span>
             <span className="created">{`created ${formatDistanceToNow(Date.parse(JSON.parse(createTime)), {
               includeSeconds: true,
