@@ -40,12 +40,13 @@ class App extends Component<{}, AppState> {
     })
   }
 
-  createTodoItem = (label: string) => {
+  createTodoItem = (label: string, timeLeft: string) => {
     return {
       id: uuid(),
       done: false,
       label,
       createTime: JSON.stringify(new Date()),
+      timeLeft,
     }
   }
 
@@ -58,8 +59,8 @@ class App extends Component<{}, AppState> {
     })
   }
 
-  addItem = (text: string) => {
-    const newItem = this.createTodoItem(text)
+  addItem = (text: string, timeLeft: string) => {
+    const newItem = this.createTodoItem(text, timeLeft)
     this.setState(({ todoData }: any) => {
       const newArray = [...todoData, newItem]
       return { todoData: newArray }
