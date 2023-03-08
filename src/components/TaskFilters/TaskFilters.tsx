@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import './TaskFilters.css'
 
-export default class TaskFilters extends Component<{ filterChangeHandler: Function; currentFilter: string }, {}> {
+interface TaskFiltersProps {
+  filterChangeHandler: Function
+  currentFilter: string
+}
+export default class TaskFilters extends Component<TaskFiltersProps, {}> {
   buttons = [
     { name: 'all', label: 'All' },
     { name: 'active', label: 'Active' },
