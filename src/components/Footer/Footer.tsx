@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import './Footer.css'
 import TaskFilters from '../TaskFilters'
 
 export default class Footer extends Component<

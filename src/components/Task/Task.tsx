@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import './Task.css'
 import { formatDistanceToNow } from 'date-fns'
 import classNames from 'classnames'
+
+import Timer from '../Timer'
 
 interface TaskProps {
   id: any
@@ -62,7 +63,10 @@ export default class Task extends Component<TaskProps, TaskState> {
           <input id={id} className="toggle" type="checkbox" onClick={onToggleDone} defaultChecked={done} />
           <label htmlFor={id}>
             <span className="description">{label}</span>
-            <span className="created">{`created ${formatDistanceToNow(Date.parse(JSON.parse(createTime)), {
+            <span className="description">
+              <Timer />
+            </span>
+            <span className="description">{`created ${formatDistanceToNow(Date.parse(JSON.parse(createTime)), {
               includeSeconds: true,
             })} ago`}</span>
           </label>

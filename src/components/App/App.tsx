@@ -5,8 +5,6 @@ import TaskList from '../TaskList'
 import Footer from '../Footer'
 import NewTaskForm from '../NewTaskForm'
 
-import './App.css'
-
 interface AppState {
   todoData: {
     id: number
