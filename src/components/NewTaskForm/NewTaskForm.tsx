@@ -24,7 +24,9 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
   onInputSubmit = (e: React.FormEvent<HTMLFormElement> | { preventDefault: Function }) => {
     e.preventDefault()
     if (this.state.label.trim() !== '') {
-      this.props.addItem(this.state.label)
+      const { label, TimerSeconds, TimerMinutes } = this.state
+      const leftTime = Number(TimerMinutes) * 60 + Number(TimerSeconds)
+      this.props.addItem(label, leftTime)
       this.setState({
         label: '',
         TimerMinutes: '',
@@ -34,6 +36,7 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
   }
 
   render() {
+    console.log(this.state)
     return (
       <header className="Header">
         <h1>todos</h1>
@@ -46,8 +49,22 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
             value={this.state.label}
             name={'label'}
           />
-          <input className="new-todo-form__timer" placeholder="Min" type="number" name={'TimerMinutes'} />
-          <input className="new-todo-form__timer" placeholder="Sec" type="number" name={'TimerSeconds'} />
+          <input
+            className="new-todo-form__timer"
+            value={this.state.TimerMinutes}
+            placeholder="Min"
+            type="number"
+            name="TimerMinutes"
+            onChange={this.onInputChange}
+          />
+          <input
+            className="new-todo-form__timer"
+            value={this.state.TimerSeconds}
+            placeholder="Sec"
+            type="number"
+            name="TimerSeconds"
+            onChange={this.onInputChange}
+          />
         </form>
       </header>
     )
