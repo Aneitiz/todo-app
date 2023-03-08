@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 
 import TaskFilters from '../TaskFilters'
 
-export default class Footer extends Component<
-  {
-    activeItemsLeft: number
-    clearCompleted: React.MouseEventHandler<HTMLButtonElement>
-    filterChangeHandler: any
-    currentFilter: string
-  },
-  object
-> {
+interface FooterProps {
+  activeItemsLeft: number
+  clearCompleted: React.MouseEventHandler<HTMLButtonElement>
+  filterChangeHandler: any
+  currentFilter: string
+}
+export default class Footer extends Component<FooterProps, {}> {
   render() {
     const { activeItemsLeft, clearCompleted, filterChangeHandler, currentFilter } = this.props
     return (
