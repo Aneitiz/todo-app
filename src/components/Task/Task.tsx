@@ -3,24 +3,26 @@ import './Task.css'
 import { formatDistanceToNow } from 'date-fns'
 import classNames from 'classnames'
 
-export default class Task extends Component<
-  {
-    id: number | string
-    createTime: string
-    label: string
-    deleteItem: React.MouseEventHandler<HTMLButtonElement>
-    onToggleDone: React.MouseEventHandler<HTMLInputElement>
-    editItemHandler: Function
-    done: boolean
-    editing: boolean
-  },
-  {
-    editing: boolean
-    inputValue: string
-  }
-> {
+interface TaskProps {
+  id: any
+  createTime: string
+  label: string
+  deleteItem: React.MouseEventHandler<HTMLButtonElement>
+  onToggleDone: React.MouseEventHandler<HTMLInputElement>
+  editItemHandler: Function
+  done: boolean
+  editing: boolean
+}
+
+interface TaskState {
+  editing: boolean
+  done: boolean
+  inputValue: string
+}
+export default class Task extends Component<TaskProps, TaskState> {
   state = {
     editing: false,
+    done: false,
     inputValue: '',
   }
 
@@ -49,7 +51,7 @@ export default class Task extends Component<
   }
 
   render(): React.ReactElement {
-    let { label, createTime, done, onToggleDone, deleteItem } = this.props
+    let { label, createTime, done, onToggleDone, deleteItem, id } = this.props
     let taskClass = classNames({
       completed: done,
       editing: this.state.editing,
@@ -57,8 +59,8 @@ export default class Task extends Component<
     return (
       <li className={taskClass}>
         <div className="view">
-          <input className="toggle" type="checkbox" onClick={onToggleDone} defaultChecked={done} />
-          <label>
+          <input id={id} className="toggle" type="checkbox" onClick={onToggleDone} defaultChecked={done} />
+          <label htmlFor={id}>
             <span className="description">{label}</span>
             <span className="created">{`created ${formatDistanceToNow(Date.parse(JSON.parse(createTime)), {
               includeSeconds: true,

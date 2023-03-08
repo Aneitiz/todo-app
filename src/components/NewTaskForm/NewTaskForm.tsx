@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import './NewTaskForm.css'
 
-export default class NewTaskForm extends Component<
-  {
-    addItem: Function
-  },
-  {
-    label: string
-  }
-> {
+export default class NewTaskForm extends Component<{ addItem: Function }, { label: string }> {
   state = {
     label: '',
   }
@@ -31,13 +24,16 @@ export default class NewTaskForm extends Component<
     return (
       <header className="Header">
         <h1>todos</h1>
-        <form onSubmit={this.onInputSubmit}>
+        <form className="new-todo-form" onSubmit={this.onInputSubmit}>
+          <input type="submit" hidden />
           <input
             className="new-todo"
             placeholder="What needs to be done?"
             onChange={this.onInputChange}
             value={this.state.label}
           />
+          <input className="new-todo-form__timer" placeholder="Min" type="number" />
+          <input className="new-todo-form__timer" placeholder="Sec" type="number" />
         </form>
       </header>
     )

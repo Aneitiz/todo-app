@@ -7,18 +7,16 @@ import NewTaskForm from '../NewTaskForm'
 
 import './App.css'
 
-class App extends Component<
-  object,
-  {
-    todoData: {
-      id: number
-      done: boolean
-      label: string
-      createTime: string
-    }[]
-    currentFilter: string
-  }
-> {
+interface AppState {
+  todoData: {
+    id: number
+    done: boolean
+    label: string
+    createTime: string
+  }[]
+  currentFilter: string
+}
+class App extends Component<{}, AppState> {
   componentDidMount() {
     if (localStorage.getItem('data')) {
       setInterval(() => {
