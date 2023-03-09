@@ -1,4 +1,4 @@
-VERSEL : https://todo-app-completed-refactor.vercel.app/
+VERSEL : https://todo-app-timer-seven.vercel.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
