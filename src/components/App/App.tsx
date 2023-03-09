@@ -11,9 +11,11 @@ interface AppState {
     done: boolean
     label: string
     createTime: string
+    timeLeft: number
   }[]
   currentFilter: string
 }
+
 class App extends Component<{}, AppState> {
   componentDidMount() {
     if (localStorage.getItem('data')) {
@@ -140,6 +142,19 @@ class App extends Component<{}, AppState> {
     })
   }
 
+  onTimer = (id: number, timeLeft: number) => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: todoData.map((element) => {
+          if (element.id === id) {
+            return { ...element, timeLeft: timeLeft }
+          }
+          return element
+        }),
+      }
+    })
+  }
+
   state = {
     todoData: [],
     currentFilter: 'all',
@@ -160,6 +175,7 @@ class App extends Component<{}, AppState> {
             deleteItem={this.deleteItem}
             onToggleDone={this.onToggleDone}
             editItemHandler={this.editItemHandler}
+            onTimer={this.onTimer}
           />
           <Footer
             activeItemsLeft={activeItemsLeft}

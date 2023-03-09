@@ -36,7 +36,6 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
   }
 
   render() {
-    console.log(this.state)
     return (
       <header className="Header">
         <h1>todos</h1>

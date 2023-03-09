@@ -10,9 +10,11 @@ interface TaskProps {
   label: string
   deleteItem: React.MouseEventHandler<HTMLButtonElement>
   onToggleDone: React.MouseEventHandler<HTMLInputElement>
+  onTimer: Function
   editItemHandler: Function
   done: boolean
   editing: boolean
+  timeLeft: number
 }
 
 interface TaskState {
@@ -52,11 +54,12 @@ export default class Task extends Component<TaskProps, TaskState> {
   }
 
   render(): React.ReactElement {
-    let { label, createTime, done, onToggleDone, deleteItem, id } = this.props
+    let { label, createTime, done, onToggleDone, onTimer, deleteItem, id, timeLeft } = this.props
     let taskClass = classNames({
       completed: done,
       editing: this.state.editing,
     })
+
     return (
       <li className={taskClass}>
         <div className="view">
@@ -64,7 +67,7 @@ export default class Task extends Component<TaskProps, TaskState> {
           <label htmlFor={id}>
             <span className="description">{label}</span>
             <span className="description">
-              <Timer />
+              <Timer onTimer={onTimer} timeLeft={timeLeft} id={id} done={done} />
             </span>
             <span className="description">{`created ${formatDistanceToNow(Date.parse(JSON.parse(createTime)), {
               includeSeconds: true,
