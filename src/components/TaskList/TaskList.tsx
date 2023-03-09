@@ -2,12 +2,20 @@ import React from 'react'
 
 import Task from '../Task'
 
-const TaskList: React.FunctionComponent<{
+interface TaskListProps {
   todoData: any
   deleteItem: Function
   onToggleDone: Function
   editItemHandler: Function
-}> = ({ todoData, deleteItem, onToggleDone, editItemHandler }): any => {
+  onTimer: Function
+}
+const TaskList: React.FunctionComponent<TaskListProps> = ({
+  todoData,
+  deleteItem,
+  onToggleDone,
+  editItemHandler,
+  onTimer,
+}): any => {
   const tasks = todoData.map((element: object) => {
     const { id, ...items }: any = element
     return (
@@ -18,6 +26,7 @@ const TaskList: React.FunctionComponent<{
         deleteItem={() => deleteItem(id)}
         onToggleDone={() => onToggleDone(id)}
         editItemHandler={editItemHandler}
+        onTimer={onTimer}
       />
     )
   })
