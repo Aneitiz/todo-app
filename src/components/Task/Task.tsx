@@ -21,12 +21,14 @@ interface TaskState {
   editing: boolean
   done: boolean
   inputValue: string
+  inputRef: any
 }
 export default class Task extends Component<TaskProps, TaskState> {
   state = {
     editing: false,
     done: false,
     inputValue: '',
+    inputRef: null,
   }
 
   editingToggle: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -77,7 +79,17 @@ export default class Task extends Component<TaskProps, TaskState> {
           <button className="icon icon-destroy" onClick={deleteItem}></button>
         </div>
         <form onSubmit={this.editTask}>
-          <input type="text" className="edit" onChange={this.onChangeInputValue} value={this.state.inputValue} />
+          <input
+            type="text"
+            className="edit"
+            onChange={this.onChangeInputValue}
+            value={this.state.inputValue}
+            ref={(inputElement) => {
+              if (inputElement) {
+                inputElement.focus()
+              }
+            }}
+          />
         </form>
       </li>
     )
