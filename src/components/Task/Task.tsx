@@ -70,7 +70,17 @@ export default class Task extends Component<
           <button className="icon icon-destroy" onClick={deleteItem}></button>
         </div>
         <form onSubmit={this.editTask}>
-          <input type="text" className="edit" onChange={this.onChangeInputValue} value={this.state.inputValue} />
+          <input
+            type="text"
+            className="edit"
+            onChange={this.onChangeInputValue}
+            value={this.state.inputValue}
+            ref={(inputElement) => {
+              if (inputElement) {
+                inputElement.focus()
+              }
+            }}
+          />
         </form>
       </li>
     )
