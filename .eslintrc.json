@@ -26,6 +26,8 @@
     },
     "plugins": ["react", "prettier", "import", "typescript"],
     "rules": {
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["off"],
         "indent": ["error", 2, { "SwitchCase": 1 }],
         "prettier/prettier": "error",
         "linebreak-style": [0, "unix"],
