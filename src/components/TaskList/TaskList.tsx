@@ -17,10 +17,13 @@ const TaskList: React.FunctionComponent<TaskListProps> = ({
   onTimer,
 }): any => {
   const tasks = todoData.map((element: object) => {
-    const { id, ...items }: any = element
+    const { id, done, label, createTime, timeLeft }: any = element
     return (
       <Task
-        {...items}
+        done={done}
+        label={label}
+        timeLeft={timeLeft}
+        createTime={createTime}
         id={id}
         key={id}
         deleteItem={() => deleteItem(id)}

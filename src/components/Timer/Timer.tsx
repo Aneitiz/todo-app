@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface TimerProps {
   timeLeft: number
@@ -7,41 +7,38 @@ interface TimerProps {
   id: number
 }
 
-interface TimerState {
-  CurrentTimer: number
-}
+const Timer = ({ timeLeft, done, onTimer, id }: TimerProps) => {
+  const [CurrentTimer, setCurrentTimer] = useState(timeLeft)
+  const [launch, setLaunch] = useState(false)
 
-export default class Timer extends Component<TimerProps, TimerState> {
-  state = {
-    CurrentTimer: this.props.timeLeft,
-  }
-
-  timer: any = null
-
-  startTimer = () => {
-    if (!this.timer || this.state.CurrentTimer > 0) {
-      this.timer = setInterval(this.timerCounter, 1000)
+  useEffect(() => {
+    if (done) {
+      setLaunch(false)
     }
-  }
-
-  stopTimer = () => {
-    clearInterval(this.timer)
-    this.timer = false
-  }
-
-  timerCounter = () => {
-    const { CurrentTimer } = this.state
-    if (!CurrentTimer || this.props.done) {
-      this.stopTimer()
-      return
+    if (!CurrentTimer) {
+      setLaunch(false)
     }
-    this.setState({
-      CurrentTimer: CurrentTimer - 1,
-    })
-    this.props.onTimer(this.props.id, CurrentTimer - 1)
+    const timer = setInterval(() => {
+      if (launch && !done) {
+        setCurrentTimer(CurrentTimer - 1)
+      }
+    }, 1000)
+    if (!launch) {
+      clearInterval(timer)
+    }
+    onTimer(id, CurrentTimer)
+    return () => clearInterval(timer)
+  }, [done, launch, CurrentTimer])
+
+  const startTimer = () => {
+    setLaunch(true)
   }
 
-  timerView = (time: number) => {
+  const stopTimer = () => {
+    setLaunch(false)
+  }
+
+  const timerView = (time: number) => {
     let minutes: number | string = Math.floor(time / 60)
     minutes = (minutes + '').length == 1 ? `0${minutes}` : minutes
     let seconds: number | string = Math.floor(time % 60)
@@ -49,14 +46,13 @@ export default class Timer extends Component<TimerProps, TimerState> {
     return `${minutes}:${seconds}`
   }
 
-  render() {
-    const { CurrentTimer } = this.state
-    return (
-      <React.Fragment>
-        <button className="icon icon-play" onClick={this.startTimer} />
-        <button className="icon icon-pause" onClick={this.stopTimer} />
-        <span className="timer-text">{this.timerView(CurrentTimer)}</span>
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      <button className="icon icon-play" onClick={startTimer} />
+      <button className="icon icon-pause" onClick={stopTimer} />
+      <span className="timer-text">{timerView(CurrentTimer)}</span>
+    </React.Fragment>
+  )
 }
+
+export default Timer

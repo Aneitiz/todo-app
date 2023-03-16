@@ -1,39 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 interface TaskFiltersProps {
   filterChangeHandler: Function
   currentFilter: string
 }
-export default class TaskFilters extends Component<TaskFiltersProps, {}> {
-  buttons = [
+const TaskFilters = ({ filterChangeHandler, currentFilter }: TaskFiltersProps) => {
+  const buttonsObject = [
     { name: 'all', label: 'All' },
     { name: 'active', label: 'Active' },
     { name: 'completed', label: 'Completed' },
   ]
 
-  render() {
-    const buttons = this.buttons.map(({ name, label }) => {
-      const { filterChangeHandler, currentFilter } = this.props
-      let className = ''
-      if (currentFilter === name) {
-        className += 'selected'
-      } else {
-        className += ''
-      }
-      return (
-        <li key={name}>
-          <button
-            className={className}
-            type="button"
-            onClick={() => {
-              filterChangeHandler(name)
-            }}
-          >
-            {label}
-          </button>
-        </li>
-      )
-    })
-    return <ul className="filters">{buttons}</ul>
-  }
+  const buttons = buttonsObject.map(({ name, label }) => {
+    let className = ''
+    if (currentFilter === name) {
+      className += 'selected'
+    } else {
+      className += ''
+    }
+    return (
+      <li key={name}>
+        <button className={className} type="button" onClick={() => filterChangeHandler(name)}>
+          {label}
+        </button>
+      </li>
+    )
+  })
+  return <ul className="filters">{buttons}</ul>
 }
+
+export default TaskFilters
