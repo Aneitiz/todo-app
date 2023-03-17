@@ -52,6 +52,7 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
             className="new-todo-form__timer"
             value={this.state.TimerMinutes}
             placeholder="Min"
+            max={9999}
             type="number"
             name="TimerMinutes"
             onChange={this.onInputChange}
@@ -61,6 +62,7 @@ export default class NewTaskForm extends Component<NewTaskFormProps, NewTaskForm
             value={this.state.TimerSeconds}
             placeholder="Sec"
             type="number"
+            max={99}
             name="TimerSeconds"
             onChange={this.onInputChange}
           />

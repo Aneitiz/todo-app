@@ -53,8 +53,8 @@ export default class Timer extends Component<TimerProps, TimerState> {
     const { CurrentTimer } = this.state
     return (
       <React.Fragment>
-        <button className="icon icon-play" onClick={this.startTimer} />
-        <button className="icon icon-pause" onClick={this.stopTimer} />
+        <button type="button" className="icon icon-play" onClick={this.startTimer} />
+        <button type="button" className="icon icon-pause" onClick={this.stopTimer} />
         <span className="timer-text">{this.timerView(CurrentTimer)}</span>
       </React.Fragment>
     )
