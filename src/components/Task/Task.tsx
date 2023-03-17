@@ -75,8 +75,8 @@ export default class Task extends Component<TaskProps, TaskState> {
               includeSeconds: true,
             })} ago`}</span>
           </label>
-          <button className="icon icon-edit" onClick={this.editingToggle}></button>
-          <button className="icon icon-destroy" onClick={deleteItem}></button>
+          <button type="button" className="icon icon-edit" onClick={this.editingToggle}></button>
+          <button type="button" className="icon icon-destroy" onClick={deleteItem}></button>
         </div>
         <form onSubmit={this.editTask}>
           <input
