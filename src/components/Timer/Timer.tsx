@@ -48,8 +48,8 @@ const Timer = ({ timeLeft, done, onTimer, id }: TimerProps) => {
 
   return (
     <React.Fragment>
-      <button className="icon icon-play" onClick={startTimer} />
-      <button className="icon icon-pause" onClick={stopTimer} />
+      <button type="button" className="icon icon-play" onClick={startTimer} />
+      <button type="button" className="icon icon-pause" onClick={stopTimer} />
       <span className="timer-text">{timerView(CurrentTimer)}</span>
     </React.Fragment>
   )
