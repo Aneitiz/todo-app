@@ -20,7 +20,7 @@ const TaskFilters = ({ filterChangeHandler, currentFilter }: TaskFiltersProps) =
     }
     return (
       <li key={name}>
-        <button type="button" className={className} type="button" onClick={() => filterChangeHandler(name)}>
+        <button className={className} type="button" onClick={() => filterChangeHandler(name)}>
           {label}
         </button>
       </li>
