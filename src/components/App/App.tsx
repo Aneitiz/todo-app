@@ -17,31 +17,6 @@ interface AppState {
 }
 
 class App extends Component<{}, AppState> {
-  componentDidMount() {
-    if (localStorage.getItem('data')) {
-      setInterval(() => {
-        this.tick()
-      }, 5000)
-      this.setState(() => {
-        return {
-          todoData: JSON.parse(localStorage.getItem('data') || '{}'),
-        }
-      })
-    }
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem('data', JSON.stringify(this.state.todoData))
-  }
-
-  tick() {
-    this.setState(({ todoData }: any): any => {
-      return {
-        todoData: todoData,
-      }
-    })
-  }
-
   createTodoItem = (label: string, timeLeft: string) => {
     return {
       id: uuid(),
@@ -111,28 +86,19 @@ class App extends Component<{}, AppState> {
     })
   }
 
-  filterStatusHandler = (items: any, filter: string) => {
-    const filters = {
-      all: 'all',
-      active: 'active',
-      completed: 'completed',
+  filterStatusHandler = (items: object[], filter: string) => {
+    if (filter === 'all') {
+      return items
     }
-    switch (filter) {
-      case filters.all: {
-        return items
-      }
-      case filters.active: {
-        return items.filter((element: { done: boolean }) => {
-          return !element.done
-        })
-      }
-      case filters.completed: {
-        return items.filter((element: { done: boolean }) => {
-          return element.done
-        })
-      }
-      default:
-        return items
+    if (filter === 'completed') {
+      return items.filter((item: any) => {
+        return item.done
+      })
+    }
+    if (filter === 'active') {
+      return items.filter((item: any) => {
+        return !item.done
+      })
     }
   }
 
