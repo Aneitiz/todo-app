@@ -167,6 +167,7 @@ class App extends Component<{}, AppState> {
       return !element.done
     }).length
     return (
+      {'тестовое значение'}
       <div className="container">
         <NewTaskForm addItem={this.addItem} />
         <section className="main">
